@@ -197,14 +197,24 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/50"
+                disabled={isSending}
+                className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Send message"
               >
-                <span>Send Message</span>
+                <span>{isSending ? "Sending..." : "Send Message"}</span>
                 <FiSend />
               </button>
 
               {status && (
-                <p className="text-green-400 text-center font-medium">
+                <p 
+                  className={`text-center font-medium ${
+                    status.includes("sent") || status.includes("Sending") 
+                      ? "text-green-400" 
+                      : "text-red-400"
+                  }`}
+                  role="status"
+                  aria-live="polite"
+                >
                   {status}
                 </p>
               )}

@@ -80,6 +80,7 @@ const Hero = () => {
       <a
         href="#about"
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-400 hover:text-white transition-colors duration-200 animate-bounce"
+        aria-label="Scroll to About section"
       >
         <FiArrowDown className="text-3xl" />
       </a>
