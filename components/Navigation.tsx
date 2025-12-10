@@ -19,6 +19,9 @@ const Navigation = () => {
   }, []);
 
   useEffect(() => {
+    // Set dark mode as default on initial load
+    document.documentElement.classList.add('dark');
+    
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
     } else {
