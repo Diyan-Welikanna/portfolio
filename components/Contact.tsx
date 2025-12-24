@@ -84,16 +84,20 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-black/50">
+    <section id="contact" className="py-32 relative bg-black/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Number */}
+        <div className="text-8xl md:text-9xl font-bold text-gray-800/20 absolute left-8 -top-8 select-none">
+          05.
+        </div>
+
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="gradient-text">Get In Touch</span>
           </h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto mb-4"></div>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Have a question or want to work together? Feel free to reach out!
+          <p className="text-gray-400 max-w-2xl font-mono">
+            {"// Let's work together"}
           </p>
         </div>
 
@@ -101,10 +105,10 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">
+              <h3 className="text-2xl font-bold text-white mb-6 font-mono">
                 Let&apos;s Connect
               </h3>
-              <p className="text-gray-400 leading-relaxed mb-8">
+              <p className="text-gray-400 leading-relaxed mb-8 text-sm">
                 I&apos;m always interested in hearing about new projects and opportunities. 
                 Whether you have a question or just want to say hi, I&apos;ll try my best 
                 to get back to you!
@@ -119,14 +123,14 @@ const Contact = () => {
                   href={method.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-4 p-5 glass rounded-lg hover:bg-gradient-to-r hover:from-blue-500/20 hover:to-purple-500/20 border-2 border-transparent hover:border-blue-500/50 transition-all duration-300 group transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30"
+                  className="flex items-center space-x-4 p-4 bg-gray-900/50 border border-gray-800 rounded-lg hover:border-blue-500/50 transition-all duration-300 group"
                 >
-                  <div className="text-blue-500 text-3xl group-hover:scale-125 group-hover:rotate-12 transition-all duration-300">
+                  <div className="text-blue-400 text-2xl group-hover:text-blue-300 transition-colors duration-300">
                     {method.icon}
                   </div>
                   <div>
-                    <p className="text-sm text-gray-400 group-hover:text-gray-300">{method.title}</p>
-                    <p className="text-white font-medium group-hover:text-blue-400 transition-colors duration-200 text-lg">
+                    <p className="text-xs text-gray-500 font-mono">{method.title}</p>
+                    <p className="text-gray-300 font-mono text-sm group-hover:text-blue-400 transition-colors duration-200">
                       {method.value}
                     </p>
                   </div>
@@ -136,14 +140,14 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="glass p-8 rounded-xl">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-300 mb-2"
+                  className="block text-xs font-mono text-gray-400 mb-2"
                 >
-                  Name
+                  name:
                 </label>
                 <input
                   type="text"
@@ -152,17 +156,17 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white transition-colors duration-200"
-                  placeholder="Your name"
+                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded focus:outline-none focus:border-blue-500 text-white transition-colors duration-200 font-mono text-sm"
+                  placeholder="your_name"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-300 mb-2"
+                  className="block text-xs font-mono text-gray-400 mb-2"
                 >
-                  Email
+                  email:
                 </label>
                 <input
                   type="email"
@@ -171,17 +175,17 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white transition-colors duration-200"
-                  placeholder="your.email@example.com"
+                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded focus:outline-none focus:border-blue-500 text-white transition-colors duration-200 font-mono text-sm"
+                  placeholder="your@email.com"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-gray-300 mb-2"
+                  className="block text-xs font-mono text-gray-400 mb-2"
                 >
-                  Message
+                  message:
                 </label>
                 <textarea
                   id="message"
@@ -190,24 +194,24 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white transition-colors duration-200 resize-none"
-                  placeholder="Your message..."
+                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded focus:outline-none focus:border-blue-500 text-white transition-colors duration-200 resize-none font-mono text-sm"
+                  placeholder="your_message_here..."
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSending}
-                className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-600/20 border border-blue-500/50 hover:bg-blue-600/30 text-blue-400 hover:text-blue-300 rounded font-mono text-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Send message"
               >
-                <span>{isSending ? "Sending..." : "Send Message"}</span>
-                <FiSend />
+                <span>{isSending ? "sending..." : "send_message()"}</span>
+                <FiSend className="text-sm" />
               </button>
 
               {status && (
                 <p 
-                  className={`text-center font-medium ${
+                  className={`text-center font-mono text-sm ${
                     status.includes("sent") || status.includes("Sending") 
                       ? "text-green-400" 
                       : "text-red-400"

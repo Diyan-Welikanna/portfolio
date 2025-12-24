@@ -1,86 +1,78 @@
 "use client";
 
-import { FiCode, FiZap, FiHeart } from "react-icons/fi";
-
 const About = () => {
-  const highlights = [
-    {
-      icon: <FiCode className="text-3xl" />,
-      title: "Clean Code",
-      description: "Writing maintainable and scalable code following best practices",
-    },
-    {
-      icon: <FiZap className="text-3xl" />,
-      title: "Performance",
-      description: "Building fast and optimized applications for the best user experience",
-    },
-    {
-      icon: <FiHeart className="text-3xl" />,
-      title: "Passion",
-      description: "Dedicated to continuous learning and staying updated with latest technologies",
-    },
+  const stats = [
+    { value: "3+", label: "Years Experience", subtitle: "in development" },
+    { value: "Full Stack", label: "Developer", subtitle: "End-to-end solutions" },
+    { value: "Modern", label: "Tech Stack", subtitle: "Latest technologies" },
   ];
 
   return (
-    <section id="about" className="py-20 bg-black/30">
+    <section id="about" className="py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Number */}
+        <div className="text-8xl font-bold text-gray-900/50 mb-8">02.</div>
+
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-           <span className="gradient-text">About Me</span>
+            <span className="gradient-text">About Me</span>
           </h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
+          <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-500"></div>
         </div>
 
-        {/* Content */}
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Description */}
-          <div className="space-y-6 animate-slide-up">
-            <p className="text-gray-300 text-lg leading-relaxed">
-              Hello! I&apos;m <span className="text-blue-500 font-semibold">Diyan Thimeesha</span>, 
-              a passionate Full Stack Developer who loves creating beautiful and functional web applications.
+        {/* Content Grid */}
+        <div className="grid lg:grid-cols-3 gap-12">
+          {/* Main Description */}
+          <div className="lg:col-span-2 space-y-6">
+            <p className="text-gray-300 text-lg leading-relaxed border-l-4 border-blue-500 pl-6">
+              I&apos;m a <span className="text-blue-500 font-semibold">Full Stack Developer</span> with 
+              experience building enterprise management systems and large-scale corporate solutions.
             </p>
+            
             <p className="text-gray-400 leading-relaxed">
-              I specialize in building modern web applications using cutting-edge technologies. 
-              My journey in software development has equipped me with a diverse skill set and 
-              a problem-solving mindset that helps me tackle complex challenges.
+              My journey includes development of web applications used by various organizations, 
+              technical team leadership, and creation of solutions with modern technologies for 
+              business process automation.
             </p>
+
             <p className="text-gray-400 leading-relaxed">
-              When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to 
-              open-source projects, or learning something new to enhance my skills.
+              What sets me apart is the combination of technical expertise with strategic business 
+              vision. I don&apos;t just write code — I understand the problem, design the 
+              architectural solution, and deliver measurable results.
             </p>
-            <div className="pt-4">
+
+            <p className="text-gray-400 leading-relaxed">
+              Currently working as a developer, helping companies optimize processes and scale 
+              operations through well-applied technology.
+            </p>
+
+            <div className="pt-6">
               <a
                 href="#contact"
-                className="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/50"
+                className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded font-medium transition-all duration-300"
               >
-                Let&apos;s Connect
+                <span>Let&apos;s Connect</span>
+                <span>→</span>
               </a>
             </div>
           </div>
 
-          {/* Right Side - Highlights */}
+          {/* Stats Cards */}
           <div className="space-y-6">
-            {highlights.map((item, index) => (
+            {stats.map((stat, index) => (
               <div
                 key={index}
-                className="glass p-6 rounded-lg hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
-                style={{
-                  animationDelay: `${index * 0.2}s`,
-                }}
+                className="glass p-6 rounded hover:bg-white/5 transition-all duration-300 border-l-4 border-blue-500"
               >
-                <div className="flex items-start space-x-4">
-                  <div className="text-blue-500 flex-shrink-0">
-                    {item.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-white mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-400">
-                      {item.description}
-                    </p>
-                  </div>
+                <div className="text-3xl font-bold gradient-text mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-white font-semibold mb-1">
+                  {stat.label}
+                </div>
+                <div className="text-gray-500 text-sm">
+                  {stat.subtitle}
                 </div>
               </div>
             ))}

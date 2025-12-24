@@ -1,105 +1,111 @@
 "use client";
 
-import {
-  FaReact,
-  FaNodeJs,
-  FaPython,
-  FaGitAlt,
-  FaDocker,
-  FaDatabase,
-} from "react-icons/fa";
-import {
-  SiNextdotjs,
-  SiTypescript,
-  SiJavascript,
-  SiTailwindcss,
-  SiMongodb,
-  SiPostgresql,
-  SiExpress,
-  SiPhp,
-  SiLaravel,
-} from "react-icons/si";
-
 const Skills = () => {
   const skillCategories = [
     {
-      title: "Frontend",
-      skills: [
-        { name: "React", icon: <FaReact />, color: "text-blue-400" },
-        { name: "Next.js", icon: <SiNextdotjs />, color: "text-white" },
-        { name: "TypeScript", icon: <SiTypescript />, color: "text-blue-500" },
-        { name: "JavaScript", icon: <SiJavascript />, color: "text-yellow-400" },
-        { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "text-cyan-400" },
-      ],
-    },
-    {
       title: "Backend",
+      extension: ".js",
       skills: [
-        { name: "Node.js", icon: <FaNodeJs />, color: "text-green-500" },
-        { name: "Express", icon: <SiExpress />, color: "text-gray-300" },
-        { name: "Python", icon: <FaPython />, color: "text-blue-400" },
-        { name: "PHP (Laravel)", icon: <SiLaravel />, color: "text-purple-500" },
+        '"Node.js"',
+        '"Express"',
+        '"Python"',
+        '"PHP (Laravel)"',
       ],
     },
     {
-      title: "Database & Tools",
+      title: "Frontend",
+      extension: ".jsx",
       skills: [
-        { name: "MongoDB", icon: <SiMongodb />, color: "text-green-500" },
-        { name: "PostgreSQL", icon: <SiPostgresql />, color: "text-blue-400" },
-        { name: "Git", icon: <FaGitAlt />, color: "text-orange-500" },
-        { name: "Docker", icon: <FaDocker />, color: "text-blue-500" },
+        '"React"',
+        '"Next.js"',
+        '"TypeScript"',
+        '"JavaScript ES6+"',
+        '"Tailwind CSS"',
+      ],
+    },
+    {
+      title: "Database",
+      extension: ".sql",
+      skills: [
+        '"PostgreSQL"',
+        '"MongoDB"',
+        '"MySQL"',
+      ],
+    },
+    {
+      title: "DevOps",
+      extension: ".yml",
+      skills: [
+        '"Docker"',
+        '"Git/GitHub"',
+        '"CI/CD"',
       ],
     },
   ];
 
   return (
-    <section id="skills" className="py-20 bg-black/50">
+    <section id="skills" className="py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Number */}
+        <div className="text-8xl md:text-9xl font-bold text-gray-800/20 absolute left-8 -top-8 select-none">
+          03.
+        </div>
+
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text"> My Skills</span>
+            <span className="gradient-text">Skills & Technologies</span>
           </h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto mb-4"></div>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Technologies and tools I work with to bring ideas to life
+          <p className="text-gray-400 max-w-2xl font-mono">
+            {"// My technical toolkit"}
           </p>
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
+        {/* Skills Grid - Code Editor Style */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {skillCategories.map((category, index) => (
             <div
-              key={categoryIndex}
-              className="glass p-8 rounded-xl hover:bg-white/10 transition-all duration-300"
+              key={index}
+              className="bg-gray-900/50 border border-gray-800 rounded-lg overflow-hidden hover:border-blue-500/50 transition-all duration-300"
             >
-              <h3 className="text-2xl font-bold text-white mb-6 text-center">
-                {category.title}
-              </h3>
-              <div className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <div
-                    key={skillIndex}
-                    className="flex items-center space-x-4 p-3 rounded-lg hover:bg-white/5 transition-all duration-200 group"
-                  >
-                    <span className={`text-3xl ${skill.color} group-hover:scale-110 transition-transform duration-200`}>
-                      {skill.icon}
-                    </span>
-                    <span className="text-gray-300 font-medium group-hover:text-white transition-colors duration-200">
-                      {skill.name}
-                    </span>
+              {/* Code Editor Header */}
+              <div className="bg-gray-800/50 px-4 py-3 border-b border-gray-700 flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div className="flex space-x-2">
+                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
                   </div>
-                ))}
+                  <span className="text-gray-400 text-sm font-mono ml-4">
+                    {category.title.toLowerCase()}{category.extension}
+                  </span>
+                </div>
+              </div>
+
+              {/* Code Content */}
+              <div className="p-6 font-mono text-sm">
+                <div className="space-y-1">
+                  <div>
+                    <span className="text-purple-400">const</span>{" "}
+                    <span className="text-blue-400">{category.title.toLowerCase()}</span>{" "}
+                    <span className="text-gray-400">=</span>{" "}
+                    <span className="text-yellow-400">[</span>
+                  </div>
+                  {category.skills.map((skill, idx) => (
+                    <div key={idx} className="pl-8">
+                      <span className="text-green-400">{skill}</span>
+                      {idx < category.skills.length - 1 && (
+                        <span className="text-gray-400">,</span>
+                      )}
+                    </div>
+                  ))}
+                  <div>
+                    <span className="text-yellow-400">];</span>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Additional Info */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-400 text-lg">
-            Always learning and exploring new technologies to stay ahead in the ever-evolving tech landscape
-          </p>
         </div>
       </div>
     </section>

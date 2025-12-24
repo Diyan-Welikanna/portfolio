@@ -1,96 +1,117 @@
 "use client";
 
 import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { useState } from "react";
 
 const Projects = () => {
+  const [activeTab, setActiveTab] = useState("all");
+
   const projects = [
     {
-      title: "E-Commerce Platform",
+      title: "POS System",
       description:
-        "A full-stack e-commerce application with shopping cart, payment integration, and admin dashboard.",
-      technologies: ["Next.js", "TypeScript", "MongoDB", "Stripe"],
-      github: "https://github.com/Diyan-Welikanna",
-      live: "#",
+        "A full-featured Point of Sale system built with Next.js, TypeScript, and Supabase. Features real-time inventory management, role-based access control, offline support, and comprehensive analytics.",
+      technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
+      github: "https://github.com/Diyan-Welikanna/POS-System",
+      live: "https://pos-system-delta-woad.vercel.app",
       gradient: "from-blue-500 to-cyan-500",
+      category: "fullstack",
     },
     {
-      title: "Task Management App",
+      title: "ACMA Total Solutions",
       description:
-        "A collaborative task management tool with real-time updates, user authentication, and team features.",
-      technologies: ["React", "Node.js", "Socket.io", "PostgreSQL"],
-      github: "https://github.com/Diyan-Welikanna",
+        "Modern responsive website for ACMA Total Solutions - the official Hitachi air conditioning channel partner in Sri Lanka. Features product catalog with Sanity CMS, contact form with email notifications, and customer reviews.",
+      technologies: ["Next.js", "TypeScript", "Sanity CMS", "SendGrid"],
+      github: "https://github.com/Diyan-Welikanna/ACMA-Solutions",
+      live: "https://acma-solutions.vercel.app",
+      gradient: "from-indigo-500 to-blue-500",
+      category: "web",
+    },
+    {
+      title: "Maria Leader",
+      description:
+        "A desktop application built with Electron and React for calculating fresh water tank volumes from sounding measurements. Features automatic volume calculation based on calibration tables.",
+      technologies: ["Electron", "React", "Vite", "JavaScript"],
+      github: "https://github.com/Diyan-Welikanna/Maria_leader",
       live: "#",
       gradient: "from-purple-500 to-pink-500",
+      category: "desktop",
     },
     {
-      title: "Weather Dashboard",
+      title: "Portfolio Website",
       description:
-        "Real-time weather application with location-based forecasts, interactive maps, and weather alerts.",
-      technologies: ["React", "Tailwind CSS", "Weather API", "Chart.js"],
-      github: "https://github.com/Diyan-Welikanna",
-      live: "#",
-      gradient: "from-orange-500 to-red-500",
-    },
-    {
-      title: "Social Media Analytics",
-      description:
-        "Analytics dashboard for social media metrics with data visualization and reporting features.",
-      technologies: ["Next.js", "Python", "D3.js", "Redis"],
-      github: "https://github.com/Diyan-Welikanna",
-      live: "#",
+        "My personal portfolio website built with Next.js and TypeScript, featuring a terminal-themed design with animated command prompts and modern UI/UX.",
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      github: "https://github.com/Diyan-Welikanna/portfolio",
+      live: "https://diyan-welikanna.github.io/portfolio",
       gradient: "from-green-500 to-teal-500",
-    },
-    {
-      title: "Portfolio CMS",
-      description:
-        "Content management system for portfolios with drag-and-drop builder and customizable templates.",
-      technologies: ["React", "Express", "MongoDB", "AWS S3"],
-      github: "https://github.com/Diyan-Welikanna",
-      live: "#",
-      gradient: "from-indigo-500 to-blue-500",
-    },
-    {
-      title: "AI Chat Assistant",
-      description:
-        "Intelligent chatbot with natural language processing and context-aware responses.",
-      technologies: ["Python", "TensorFlow", "React", "FastAPI"],
-      github: "https://github.com/Diyan-Welikanna",
-      live: "#",
-      gradient: "from-yellow-500 to-orange-500",
+      category: "web",
     },
   ];
 
+  const categories = [
+    { id: "all", label: "all projects" },
+    { id: "fullstack", label: "full stack" },
+    { id: "web", label: "web apps" },
+    { id: "desktop", label: "desktop apps" },
+  ];
+
+  const filteredProjects = activeTab === "all" 
+    ? projects 
+    : projects.filter(p => p.category === activeTab);
+
   return (
-    <section id="projects" className="py-20 bg-black/30">
+    <section id="projects" className="py-32 relative bg-black/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Number */}
+        <div className="text-8xl md:text-9xl font-bold text-gray-800/20 absolute left-8 -top-8 select-none">
+          04.
+        </div>
+
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
              <span className="gradient-text">Featured Projects</span>
           </h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto mb-4"></div>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            A showcase of my recent work and personal projects
+          <p className="text-gray-400 max-w-2xl font-mono">
+            {"// Some things I've built"}
           </p>
         </div>
 
+        {/* Tabs */}
+        <div className="flex flex-wrap gap-3 mb-8 border-b border-gray-800 pb-4">
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => setActiveTab(category.id)}
+              className={`px-4 py-2 rounded font-mono text-sm transition-all duration-300 ${
+                activeTab === category.id
+                  ? "bg-blue-600/20 border border-blue-500/50 text-blue-400"
+                  : "bg-gray-800/50 border border-gray-700 text-gray-400 hover:border-blue-500/30 hover:text-gray-300"
+              }`}
+            >
+              {category.label}
+            </button>
+          ))}
+        </div>
+
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project, index) => (
             <div
               key={index}
-              className="glass rounded-xl overflow-hidden hover:bg-white/10 transition-all duration-300 transform hover:scale-105 group"
+              className="bg-gray-900/50 border border-gray-800 rounded-lg overflow-hidden hover:border-blue-500/50 transition-all duration-300 group"
             >
               {/* Project Header with Gradient */}
-              <div className={`h-2 bg-gradient-to-r ${project.gradient}`}></div>
+              <div className={`h-1 bg-gradient-to-r ${project.gradient}`}></div>
 
               {/* Project Content */}
               <div className="p-6 space-y-4">
-                <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors duration-200">
+                <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors duration-200 font-mono">
                   {project.title}
                 </h3>
 
-                <p className="text-gray-400 leading-relaxed">
+                <p className="text-gray-400 text-sm leading-relaxed min-h-[4rem]">
                   {project.description}
                 </p>
 
@@ -99,7 +120,7 @@ const Projects = () => {
                   {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 text-xs font-medium bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20"
+                      className="px-2 py-1 text-xs font-mono bg-gray-800/50 text-gray-300 rounded border border-gray-700"
                     >
                       {tech}
                     </span>
@@ -107,39 +128,50 @@ const Projects = () => {
                 </div>
 
                 {/* Links */}
-                <div className="flex space-x-4 pt-4">
+                <div className="flex space-x-4 pt-2 border-t border-gray-800 mt-4">
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200"
+                    className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm font-mono pt-4"
                   >
-                    <FiGithub className="text-xl" />
-                    <span>Code</span>
+                    <FiGithub className="text-lg" />
+                    <span>code</span>
                   </a>
-                  <a
-                    href={project.live}
-                    className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200"
-                  >
-                    <FiExternalLink className="text-xl" />
-                    <span>Live Demo</span>
-                  </a>
+                  {project.live !== "#" && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm font-mono pt-4"
+                    >
+                      <FiExternalLink className="text-lg" />
+                      <span>live</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
           ))}
         </div>
 
+        {/* Empty State */}
+        {filteredProjects.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-500 font-mono">No projects found in this category.</p>
+          </div>
+        )}
+
         {/* View More */}
-        <div className="text-center mt-12">
+        <div className="mt-12">
           <a
             href="https://github.com/Diyan-Welikanna"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-6 py-3 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white rounded-lg font-medium transition-all duration-300 hover:scale-105"
+            className="inline-flex items-center space-x-2 px-6 py-3 bg-gray-900/50 border border-gray-800 text-gray-300 hover:border-blue-500 hover:text-blue-400 rounded-lg font-mono text-sm transition-all duration-300"
           >
-            <FiGithub className="text-xl" />
-            <span>View More on GitHub</span>
+            <FiGithub className="text-lg" />
+            <span>view more on github</span>
           </a>
         </div>
       </div>

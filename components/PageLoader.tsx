@@ -5,8 +5,11 @@ import { useState, useEffect } from "react";
 const PageLoader = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+    
     // Smooth progress animation
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
@@ -14,15 +17,15 @@ const PageLoader = () => {
           clearInterval(progressInterval);
           return 100;
         }
-        return prev + Math.random() * 15;
+        return prev + Math.random() * 20;
       });
-    }, 100);
+    }, 80);
 
-    // Complete loading
+    // Complete loading faster
     const timer = setTimeout(() => {
       setProgress(100);
-      setTimeout(() => setIsLoading(false), 400);
-    }, 2000);
+      setTimeout(() => setIsLoading(false), 300);
+    }, 1500);
 
     return () => {
       clearInterval(progressInterval);
@@ -30,7 +33,7 @@ const PageLoader = () => {
     };
   }, []);
 
-  if (!isLoading) return null;
+  if (!isMounted || !isLoading) return null;
 
   return (
     <div 
