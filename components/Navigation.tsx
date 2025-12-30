@@ -2,23 +2,11 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { FiMenu, FiX, FiSun, FiMoon } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
-  const [mounted, setMounted] = useState(false);
-
-  // Handle mounting to avoid hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-    // Load theme preference from localStorage
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      setIsDarkMode(false);
-    }
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,19 +16,6 @@ const Navigation = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-    
-    // Set dark mode as default on initial load
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [isDarkMode, mounted]);
 
   const navLinks = [
     { name: "Home", href: "#home" },
@@ -75,29 +50,13 @@ const Navigation = () => {
                 aria-label={`Navigate to ${link.name}`}
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#64ffda] group-hover:w-full transition-all duration-300"></span>
               </Link>
             ))}
-            
-            {/* Theme Toggle */}
-            <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-200"
-              aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              {mounted && (isDarkMode ? <FiSun className="text-yellow-400 text-xl" /> : <FiMoon className="text-blue-500 text-xl" />)}
-            </button>
           </div>
 
-          {/* Mobile Menu Button & Theme Toggle */}
-          <div className="md:hidden flex items-center space-x-4">
-            <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-200"
-              aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              {mounted && (isDarkMode ? <FiSun className="text-yellow-400 text-xl" /> : <FiMoon className="text-blue-500 text-xl" />)}
-            </button>
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center">
             <button
               className="text-white text-2xl"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

@@ -86,8 +86,8 @@ const Projects = () => {
               onClick={() => setActiveTab(category.id)}
               className={`px-4 py-2 rounded font-mono text-sm transition-all duration-300 ${
                 activeTab === category.id
-                  ? "bg-blue-600/20 border border-blue-500/50 text-blue-400"
-                  : "bg-gray-800/50 border border-gray-700 text-gray-400 hover:border-blue-500/30 hover:text-gray-300"
+                  ? "bg-[#64ffda]/20 border border-[#64ffda]/50 text-[#64ffda]"
+                  : "bg-gray-800/50 border border-gray-700 text-gray-400 hover:border-[#64ffda]/30 hover:text-[#64ffda]"
               }`}
             >
               {category.label}
@@ -100,14 +100,14 @@ const Projects = () => {
           {filteredProjects.map((project, index) => (
             <div
               key={index}
-              className="bg-gray-900/50 border border-gray-800 rounded-lg overflow-hidden hover:border-blue-500/50 transition-all duration-300 group"
+              className="bg-gray-900/50 border border-gray-800 rounded-lg overflow-hidden hover:border-[#64ffda]/50 transition-all duration-300 group"
             >
               {/* Project Header with Gradient */}
               <div className={`h-1 bg-gradient-to-r ${project.gradient}`}></div>
 
               {/* Project Content */}
               <div className="p-6 space-y-4">
-                <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors duration-200 font-mono">
+                <h3 className="text-xl font-bold text-white group-hover:text-[#64ffda] transition-colors duration-200 font-mono">
                   {project.title}
                 </h3>
 
@@ -133,7 +133,7 @@ const Projects = () => {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm font-mono pt-4"
+                    className="flex items-center space-x-2 text-gray-400 hover:text-[#64ffda] transition-colors duration-200 text-sm font-mono pt-4"
                   >
                     <FiGithub className="text-lg" />
                     <span>code</span>
@@ -143,7 +143,7 @@ const Projects = () => {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm font-mono pt-4"
+                      className="flex items-center space-x-2 text-gray-400 hover:text-[#64ffda] transition-colors duration-200 text-sm font-mono pt-4"
                     >
                       <FiExternalLink className="text-lg" />
                       <span>live</span>
@@ -168,7 +168,7 @@ const Projects = () => {
             href="https://github.com/Diyan-Welikanna"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-6 py-3 bg-gray-900/50 border border-gray-800 text-gray-300 hover:border-blue-500 hover:text-blue-400 rounded-lg font-mono text-sm transition-all duration-300"
+            className="inline-flex items-center space-x-2 px-6 py-3 bg-gray-900/50 border border-gray-800 text-gray-300 hover:border-[#64ffda] hover:text-[#64ffda] rounded-lg font-mono text-sm transition-all duration-300"
           >
             <FiGithub className="text-lg" />
             <span>view more on github</span>

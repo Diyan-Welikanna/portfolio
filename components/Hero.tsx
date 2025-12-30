@@ -4,26 +4,62 @@ import { FiGithub, FiMail, FiArrowRight, FiTerminal } from "react-icons/fi";
 import { useState, useEffect } from "react";
 
 const Hero = () => {
-  const [showCommand1, setShowCommand1] = useState(false);
+  const [showPrompt1, setShowPrompt1] = useState(false);
+  const [command1Text, setCommand1Text] = useState("");
   const [showOutput1, setShowOutput1] = useState(false);
-  const [showCommand2, setShowCommand2] = useState(false);
+  const [showPrompt2, setShowPrompt2] = useState(false);
+  const [command2Text, setCommand2Text] = useState("");
   const [showOutput2, setShowOutput2] = useState(false);
-  const [showPrompt, setShowPrompt] = useState(false);
+  const [showPrompt3, setShowPrompt3] = useState(false);
+
+  const command1 = "whoami";
+  const command2 = "cat about.txt";
 
   useEffect(() => {
-    const timer1 = setTimeout(() => setShowCommand1(true), 500);
-    const timer2 = setTimeout(() => setShowOutput1(true), 1500);
-    const timer3 = setTimeout(() => setShowCommand2(true), 2000);
-    const timer4 = setTimeout(() => setShowOutput2(true), 3000);
-    const timer5 = setTimeout(() => setShowPrompt(true), 3500);
+    // Show first prompt immediately
+    setShowPrompt1(true);
 
-    return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      clearTimeout(timer3);
-      clearTimeout(timer4);
-      clearTimeout(timer5);
-    };
+    // Type command 1 letter by letter
+    setTimeout(() => {
+      let i = 0;
+      const typingInterval1 = setInterval(() => {
+        if (i < command1.length) {
+          setCommand1Text(command1.substring(0, i + 1));
+          i++;
+        } else {
+          clearInterval(typingInterval1);
+          // Show output after command is complete
+          setTimeout(() => {
+            setShowOutput1(true);
+            // Show second prompt
+            setTimeout(() => {
+              setShowPrompt2(true);
+              
+              // Type command 2
+              setTimeout(() => {
+                let j = 0;
+                const typingInterval2 = setInterval(() => {
+                  if (j < command2.length) {
+                    setCommand2Text(command2.substring(0, j + 1));
+                    j++;
+                  } else {
+                    clearInterval(typingInterval2);
+                    // Show output 2
+                    setTimeout(() => {
+                      setShowOutput2(true);
+                      // Show final prompt
+                      setTimeout(() => {
+                        setShowPrompt3(true);
+                      }, 300);
+                    }, 300);
+                  }
+                }, 100);
+              }, 300);
+            }, 300);
+          }, 300);
+        }
+      }, 100);
+    }, 500);
   }, []);
 
   return (
@@ -34,7 +70,7 @@ const Hero = () => {
       {/* Animated Star Background */}
       <div className="absolute inset-0 stars-bg"></div>
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-20 left-10 w-1 h-1 bg-blue-400 rounded-full animate-pulse"></div>
+        <div className="absolute top-20 left-10 w-1 h-1 bg-[#64ffda] rounded-full animate-pulse"></div>
         <div className="absolute top-40 right-20 w-1 h-1 bg-purple-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
         <div className="absolute bottom-32 left-1/4 w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
         <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-pink-400 rounded-full animate-pulse" style={{animationDelay: '1.5s'}}></div>
@@ -49,15 +85,15 @@ const Hero = () => {
           </div>
 
           {/* Terminal Window */}
-          <div className="max-w-4xl bg-[#1e293b]/80 backdrop-blur-sm border border-gray-700/50 rounded-lg overflow-hidden shadow-2xl">
+          <div className="w-[896px] max-w-full bg-[#1e293b]/80 backdrop-blur-sm border border-[#64ffda]/30 rounded-lg overflow-hidden shadow-2xl shadow-[#64ffda]/20">
             {/* Terminal Header */}
-            <div className="bg-[#0f172a] px-4 py-3 flex items-center justify-between border-b border-gray-700/50">
+            <div className="bg-[#0f172a] px-4 py-3 flex items-center justify-between border-b border-[#64ffda]/30">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-gray-400 text-xs font-mono">diyan@portfolio: ~</div>
+              <div className="text-[#64ffda] text-xs font-mono">diyan@portfolio: ~</div>
               <div className="w-16"></div>
             </div>
 
@@ -66,22 +102,25 @@ const Hero = () => {
               {/* whoami command */}
               <div className="mb-4">
                 <div className="mb-2 h-6">
-                  {showCommand1 && (
+                  {showPrompt1 && (
                     <>
-                      <span className="text-green-400">diyan</span>
+                      <span className="text-[#64ffda]">diyan</span>
                       <span className="text-gray-500">@</span>
-                      <span className="text-blue-400">portfolio</span>
+                      <span className="text-[#64ffda]">portfolio</span>
                       <span className="text-gray-500">:</span>
-                      <span className="text-purple-400">~</span>
+                      <span className="text-[#64ffda]">~</span>
                       <span className="text-gray-500">$</span>
-                      <span className="text-gray-300 ml-2 typing-animation">whoami</span>
+                      <span className="text-gray-300 ml-2">
+                        {command1Text}
+                        {command1Text && command1Text.length < command1.length && <span className="animate-pulse">_</span>}
+                      </span>
                     </>
                   )}
                 </div>
                 <div className="ml-4 h-6">
                   {showOutput1 && (
                     <div className="animate-fade-in">
-                      <span className="text-blue-400">&gt;</span> Diyan Thimeesha <span className="text-blue-400">&gt;</span> Full Stack Developer
+                      <span className="text-[#64ffda]">&gt;</span> Diyan Thimeesha <span className="text-[#64ffda]">&gt;</span> Full Stack Developer
                     </div>
                   )}
                 </div>
@@ -90,15 +129,18 @@ const Hero = () => {
               {/* cat about.txt command */}
               <div className="mb-4">
                 <div className="mb-2 h-6">
-                  {showCommand2 && (
+                  {showPrompt2 && (
                     <>
-                      <span className="text-green-400">diyan</span>
+                      <span className="text-[#64ffda]">diyan</span>
                       <span className="text-gray-500">@</span>
-                      <span className="text-blue-400">portfolio</span>
+                      <span className="text-[#64ffda]">portfolio</span>
                       <span className="text-gray-500">:</span>
-                      <span className="text-purple-400">~</span>
+                      <span className="text-[#64ffda]">~</span>
                       <span className="text-gray-500">$</span>
-                      <span className="text-gray-300 ml-2 typing-animation">cat about.txt</span>
+                      <span className="text-gray-300 ml-2">
+                        {command2Text}
+                        {command2Text && command2Text.length < command2.length && <span className="animate-pulse">_</span>}
+                      </span>
                     </>
                   )}
                 </div>
@@ -113,13 +155,13 @@ const Hero = () => {
 
               {/* Empty prompt with cursor */}
               <div className="h-6">
-                {showPrompt && (
+                {showPrompt3 && (
                   <div className="animate-fade-in">
-                    <span className="text-green-400">diyan</span>
+                    <span className="text-[#64ffda]">diyan</span>
                     <span className="text-gray-500">@</span>
-                    <span className="text-blue-400">portfolio</span>
+                    <span className="text-[#64ffda]">portfolio</span>
                     <span className="text-gray-500">:</span>
-                    <span className="text-purple-400">~</span>
+                    <span className="text-[#64ffda]">~</span>
                     <span className="text-gray-500">$</span>
                     <span className="animate-pulse ml-2">_</span>
                   </div>
@@ -132,13 +174,13 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 items-start pt-4">
             <a
               href="#projects"
-              className="group flex items-center space-x-2 px-6 py-3 bg-blue-600/20 border border-blue-500/50 hover:bg-blue-600/30 text-blue-400 hover:text-blue-300 rounded font-mono text-sm transition-all duration-300"
+              className="group flex items-center space-x-2 px-6 py-3 bg-[#64ffda]/20 border border-[#64ffda]/50 hover:bg-[#64ffda]/30 text-[#64ffda] hover:text-[#64ffda]/80 rounded font-mono text-sm transition-all duration-300"
             >
               <span>View my work →</span>
             </a>
             <a
               href="#contact"
-              className="group flex items-center space-x-2 px-6 py-3 bg-gray-800/50 border border-gray-700 hover:border-blue-500/50 text-gray-300 hover:text-blue-400 rounded font-mono text-sm transition-all duration-300"
+              className="group flex items-center space-x-2 px-6 py-3 bg-gray-800/50 border border-gray-700 hover:border-[#64ffda]/50 text-gray-300 hover:text-[#64ffda] rounded font-mono text-sm transition-all duration-300"
             >
               <span>Get in touch</span>
             </a>

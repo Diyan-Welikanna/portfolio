@@ -86,10 +86,10 @@ const PageLoader = () => {
 
         {/* Floating particles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-500 rounded-full animate-float-1 opacity-50"></div>
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-[#64ffda] rounded-full animate-float-1 opacity-50"></div>
           <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-purple-500 rounded-full animate-float-2 opacity-50"></div>
           <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-pink-500 rounded-full animate-float-3 opacity-50"></div>
-          <div className="absolute top-2/3 right-1/3 w-1 h-1 bg-blue-400 rounded-full animate-float-1 opacity-50"></div>
+          <div className="absolute top-2/3 right-1/3 w-1 h-1 bg-[#64ffda] rounded-full animate-float-1 opacity-50"></div>
         </div>
       </div>
     </div>

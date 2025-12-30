@@ -123,14 +123,14 @@ const Contact = () => {
                   href={method.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-4 p-4 bg-gray-900/50 border border-gray-800 rounded-lg hover:border-blue-500/50 transition-all duration-300 group"
+                  className="flex items-center space-x-4 p-4 bg-gray-900/50 border border-gray-800 rounded-lg hover:border-[#64ffda]/50 transition-all duration-300 group"
                 >
-                  <div className="text-blue-400 text-2xl group-hover:text-blue-300 transition-colors duration-300">
+                  <div className="text-[#64ffda] text-2xl group-hover:text-[#64ffda]/80 transition-colors duration-300">
                     {method.icon}
                   </div>
                   <div>
                     <p className="text-xs text-gray-500 font-mono">{method.title}</p>
-                    <p className="text-gray-300 font-mono text-sm group-hover:text-blue-400 transition-colors duration-200">
+                    <p className="text-gray-300 font-mono text-sm group-hover:text-[#64ffda] transition-colors duration-200">
                       {method.value}
                     </p>
                   </div>
@@ -156,7 +156,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded focus:outline-none focus:border-blue-500 text-white transition-colors duration-200 font-mono text-sm"
+                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded focus:outline-none focus:border-[#64ffda] text-white transition-colors duration-200 font-mono text-sm"
                   placeholder="your_name"
                 />
               </div>
@@ -175,7 +175,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded focus:outline-none focus:border-blue-500 text-white transition-colors duration-200 font-mono text-sm"
+                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded focus:outline-none focus:border-[#64ffda] text-white transition-colors duration-200 font-mono text-sm"
                   placeholder="your@email.com"
                 />
               </div>
@@ -194,7 +194,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded focus:outline-none focus:border-blue-500 text-white transition-colors duration-200 resize-none font-mono text-sm"
+                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded focus:outline-none focus:border-[#64ffda] text-white transition-colors duration-200 resize-none font-mono text-sm"
                   placeholder="your_message_here..."
                 />
               </div>
@@ -202,7 +202,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSending}
-                className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-600/20 border border-blue-500/50 hover:bg-blue-600/30 text-blue-400 hover:text-blue-300 rounded font-mono text-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-[#64ffda]/20 border border-[#64ffda]/50 hover:bg-[#64ffda]/30 text-[#64ffda] hover:text-[#64ffda]/80 rounded font-mono text-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Send message"
               >
                 <span>{isSending ? "sending..." : "send_message()"}</span>
@@ -213,8 +213,8 @@ const Contact = () => {
                 <p 
                   className={`text-center font-mono text-sm ${
                     status.includes("sent") || status.includes("Sending") 
-                      ? "text-green-400" 
-                      : "text-red-400"
+                      ? "text-[#64ffda]" 
+                      : "text-gray-400"
                   }`}
                   role="status"
                   aria-live="polite"

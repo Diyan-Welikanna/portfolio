@@ -66,7 +66,7 @@ const Skills = () => {
           {skillCategories.map((category, index) => (
             <div
               key={index}
-              className="bg-gray-900/50 border border-gray-800 rounded-lg overflow-hidden hover:border-blue-500/50 transition-all duration-300"
+              className="bg-gray-900/50 border border-gray-800 rounded-lg overflow-hidden hover:border-[#64ffda]/50 transition-all duration-300"
             >
               {/* Code Editor Header */}
               <div className="bg-gray-800/50 px-4 py-3 border-b border-gray-700 flex items-center justify-between">
@@ -87,7 +87,7 @@ const Skills = () => {
                 <div className="space-y-1">
                   <div>
                     <span className="text-purple-400">const</span>{" "}
-                    <span className="text-blue-400">{category.title.toLowerCase()}</span>{" "}
+                    <span className="text-[#64ffda]">{category.title.toLowerCase()}</span>{" "}
                     <span className="text-gray-400">=</span>{" "}
                     <span className="text-yellow-400">[</span>
                   </div>

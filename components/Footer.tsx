@@ -11,14 +11,14 @@ const Footer = () => {
               href="https://github.com/Diyan-Welikanna"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors duration-200"
+              className="text-[#64ffda] hover:text-[#64ffda]/80 transition-colors duration-200"
               aria-label="GitHub"
             >
               <FiGithub className="text-2xl" />
             </a>
             <a
               href="mailto:thimeesharandika@gmail.com"
-              className="text-gray-400 hover:text-white transition-colors duration-200"
+              className="text-[#64ffda] hover:text-[#64ffda]/80 transition-colors duration-200"
               aria-label="Email"
             >
               <FiMail className="text-2xl" />
@@ -26,9 +26,9 @@ const Footer = () => {
           </div>
 
           {/* Copyright */}
-          <div className="text-gray-400 text-sm flex items-center space-x-1">
+          <div className="text-[#64ffda] text-sm flex items-center space-x-1">
             <span>© {new Date().getFullYear()} Diyan Thimeesha. Made with</span>
-            <FiHeart className="text-red-500" />
+            <FiHeart className="text-[#64ffda]" />
           </div>
         </div>
       </div>
